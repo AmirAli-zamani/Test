@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amir Ali | Contact</title>
-    <!-- لود کردن فونت و آیکون‌ها -->
+    <title>Amir Ali</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -25,7 +24,8 @@
             padding: 20px;
         }
 
-        .card {
+        /* کانتینر اصلی که صفحات داخل آن عوض می‌شوند */
+        .app-container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -36,42 +36,30 @@
             max-width: 400px;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 40px;
-            font-weight: 600;
-            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
-            /* اینجا میتوانید عکس خود را در گیت هاب آپلود کنید و آدرسش را در src قرار دهید */
-            /* background-image: url('profile.jpg'); background-size: cover; */
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        p {
-            font-size: 14px;
-            color: #a1a1aa;
-            margin-bottom: 30px;
-        }
-
-        .links {
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            justify-content: center;
         }
 
+        /* استایل مشترک عکس پروفایل (دایره‌ای) */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #a855f7;
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+        .subtitle { font-size: 14px; color: #a1a1aa; margin-bottom: 30px; }
+        .id-text { font-size: 16px; color: #d1d5db; margin-bottom: 30px; direction: ltr; font-weight: 600; }
+
+        /* استایل دکمه ها */
         .btn {
             display: flex;
             align-items: center;
@@ -86,163 +74,102 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
+            width: 100%;
+            margin-bottom: 12px;
+            background: transparent;
         }
 
         .btn i { font-size: 20px; }
-
-        .btn-phone { background: rgba(255, 255, 255, 0.1); }
-        .btn-phone:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-3px); }
-
-        .btn-telegram { background: #229ED9; }
-        .btn-telegram:hover { background: #1e8bc3; transform: translateY(-3px); }
-
-        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-        .btn-instagram:hover { transform: translateY(-3px); }
-
-        .footer { margin-top: 30px; font-size: 12px; color: #71717a; }
-
-        /* --- استایل‌های مربوط به پنجره مودال (Popup) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: #1e1e2f;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 30px;
-            width: 90%;
-            max-width: 340px;
-            text-align: center;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid #a855f7;
-            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
-        }
-
-        .modal-text {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .modal-btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .btn-confirm { background: #10b981; color: white; }
-        .btn-confirm:hover { background: #059669; }
+        .btn:hover { transform: translateY(-2px); }
         
-        .btn-cancel { background: rgba(255, 255, 255, 0.1); color: #ddd; }
+        .btn-phone { background: rgba(255, 255, 255, 0.1); }
+        .btn-phone:hover { background: rgba(255, 255, 255, 0.2); }
+        
+        .btn-telegram { background: #229ED9; }
+        .btn-telegram:hover { background: #1e8bc3; box-shadow: 0 5px 15px rgba(34, 158, 217, 0.3); }
+        
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-instagram:hover { box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3); }
+        
+        .btn-cancel { background: rgba(255, 255, 255, 0.1); color: #ddd; margin-top: 10px; }
         .btn-cancel:hover { background: rgba(255, 255, 255, 0.2); }
+
+        /* انیمیشن و مخفی کردن صفحات */
+        .view {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        .view.active { display: flex; flex-direction: column; width: 100%; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="avatar">A</div>
-        <h1>Amir Ali</h1>
-        <p>Digital Business Card</p>
+    <div class="app-container">
+        
+        <!-- 🌟 صفحه اصلی -->
+        <div id="main-view" class="view active">
+            <!-- استفاده از عکسی که در گیت هاب آپلود می کنید -->
+            <img src="profile.jpg" alt="Amir Ali" class="profile-img">
+            <h1>Amir Ali</h1>
+            <p class="subtitle">Digital Business Card</p>
 
-        <div class="links">
             <a href="tel:09905754550" class="btn btn-phone">
                 <i class="fas fa-phone-alt"></i> Call Me
             </a>
-
-            <!-- دکمه‌های تلگرام و اینستاگرام با یک ویژگی data-link برای جاوا اسکریپت -->
-            <a href="#" class="btn btn-telegram" data-url="https://t.me/Amir_ali194" data-app="Telegram">
+            <button onclick="showView('telegram-view')" class="btn btn-telegram">
                 <i class="fab fa-telegram-plane"></i> Telegram
-            </a>
-
-            <a href="#" class="btn btn-instagram" data-url="https://instagram.com/amir_zam01" data-app="Instagram">
+            </button>
+            <button onclick="showView('instagram-view')" class="btn btn-instagram">
                 <i class="fab fa-instagram"></i> Instagram
+            </button>
+        </div>
+
+        <!-- 🌟 صفحه تلگرام (استفاده از عکس شما) -->
+        <div id="telegram-view" class="view">
+            <img src="profile.jpg" alt="Amir Ali" class="profile-img">
+            <h1>Telegram</h1>
+            <p class="id-text">@Amir_ali194</p>
+            
+            <a href="https://t.me/Amir_ali194" class="btn btn-telegram">
+                <i class="fab fa-telegram-plane"></i> ورود به پیام‌رسان
             </a>
+            <button onclick="showView('main-view')" class="btn btn-cancel">
+                <i class="fas fa-arrow-right"></i> بازگشت
+            </button>
         </div>
 
-        <div class="footer">Scan my NFC tag to connect</div>
-    </div>
-
-    <!-- پنجره مودال (مخفی است تا وقتی کلیک شود) -->
-    <div class="modal-overlay" id="socialModal">
-        <div class="modal-content">
-            <!-- اینجا عکس خود را قرار دهید. فعلا یک عکس پیش فرض گذاشتم -->
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Profile Picture" class="modal-img">
+        <!-- 🌟 صفحه اینستاگرام (استفاده خودکار از عکس اینستاگرام) -->
+        <div id="instagram-view" class="view">
+            <!-- این لینک به صورت خودکار عکس پیج اینستاگرام شما را پیدا میکند. اگر اینترنت قطع بود، عکس profile.jpg را نشان میدهد -->
+            <img src="https://unavatar.io/instagram/amir_zam01" onerror="this.src='profile.jpg'" alt="Instagram Profile" class="profile-img">
+            <h1>Instagram</h1>
+            <p class="id-text">@amir_zam01</p>
             
-            <h2 class="modal-text" id="modalTitle">ورود به تلگرام</h2>
-            
-            <div class="modal-btn-group">
-                <a href="#" id="confirmBtn" class="btn btn-confirm">ادامه و ورود</a>
-                <button id="cancelBtn" class="btn btn-cancel">انصراف</button>
-            </div>
+            <a href="https://instagram.com/amir_zam01" class="btn btn-instagram">
+                <i class="fab fa-instagram"></i> ورود به پیج
+            </a>
+            <button onclick="showView('main-view')" class="btn btn-cancel">
+                <i class="fas fa-arrow-right"></i> بازگشت
+            </button>
         </div>
+
     </div>
 
     <script>
-        const overlay = document.getElementById('socialModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const confirmBtn = document.getElementById('confirmBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-        
-        // پیدا کردن دکمه‌های تلگرام و اینستاگرام
-        const socialButtons = document.querySelectorAll('.btn-telegram, .btn-instagram');
-
-        socialButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault(); // جلوگیری از باز شدن لینک در لحظه کلیک
-                
-                const url = this.getAttribute('data-url');
-                const appName = this.getAttribute('data-app');
-                
-                // تنظیم متن و لینک دکمه تایید
-                modalTitle.innerText = 'ورود به ' + appName;
-                confirmBtn.href = url;
-                
-                // نمایش مودال
-                overlay.classList.add('active');
+        // این تابع صفحات را بدون رفرش عوض میکند
+        function showView(viewId) {
+            // همه صفحات را مخفی کن
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
             });
-        });
-
-        // بستن مودال با دکمه انصراف
-        cancelBtn.addEventListener('click', function() {
-            overlay.classList.remove('active');
-        });
-
-        // بستن مودال با کلیک بیرون از کادر
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
-            }
-        });
+            // صفحه مورد نظر را نشان بده
+            document.getElementById(viewId).classList.add('active');
+        }
     </script>
 </body>
 </html>
