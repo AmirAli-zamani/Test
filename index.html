@@ -7,78 +7,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: linear-gradient(135deg, #1e1e2f 0%, #111119 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #ffffff; 
+            padding: 20px; 
         }
-
-        body {
-            background: linear-gradient(135deg, #1e1e2f 0%, #111119 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            padding: 20px;
+        
+        .app-container { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 24px; 
+            padding: 40px 30px; 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5); 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 500px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
         }
-
-        /* کانتینر اصلی که صفحات داخل آن عوض می‌شوند */
-        .app-container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        
+        .profile-img { 
+            width: 120px; 
+            height: 120px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin: 0 auto 15px; 
+            border: 3px solid #a855f7; 
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4); 
         }
-
-        /* استایل مشترک عکس پروفایل (دایره‌ای) */
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 15px;
-            border: 3px solid #a855f7;
-            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
-        }
-
+        
         h1 { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
-        .subtitle { font-size: 14px; color: #a1a1aa; margin-bottom: 30px; }
+        .subtitle { font-size: 14px; color: #a1a1aa; margin-bottom: 30px; letter-spacing: 1px; }
         .id-text { font-size: 16px; color: #d1d5db; margin-bottom: 30px; direction: ltr; font-weight: 600; }
-
-        /* استایل دکمه ها */
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-            cursor: pointer;
-            width: 100%;
-            margin-bottom: 12px;
-            background: transparent;
+        
+        .btn { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 16px; 
+            border-radius: 14px; 
+            text-decoration: none; 
+            color: #ffffff; 
+            font-size: 16px; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            cursor: pointer; 
+            width: 100%; 
+            margin-bottom: 12px; 
+            background: transparent; 
         }
-
+        
         .btn i { font-size: 20px; }
         .btn:hover { transform: translateY(-2px); }
         
@@ -93,17 +85,14 @@
         
         .btn-cancel { background: rgba(255, 255, 255, 0.1); color: #ddd; margin-top: 10px; }
         .btn-cancel:hover { background: rgba(255, 255, 255, 0.2); }
-
+        
         /* انیمیشن و مخفی کردن صفحات */
-        .view {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
+        .view { display: none; animation: fadeIn 0.4s ease forwards; }
         .view.active { display: flex; flex-direction: column; width: 100%; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
         }
     </style>
 </head>
@@ -113,24 +102,27 @@
         
         <!-- 🌟 صفحه اصلی -->
         <div id="main-view" class="view active">
-            <!-- استفاده از عکسی که در گیت هاب آپلود می کنید -->
+            <!-- عکس شما که در گیت هاب آپلود کردید -->
             <img src="profile.jpg" alt="Amir Ali" class="profile-img">
             <h1>Amir Ali</h1>
-            <p class="subtitle">Digital Business Card</p>
+            <p class="subtitle">Who Am I</p>
 
             <a href="tel:09905754550" class="btn btn-phone">
                 <i class="fas fa-phone-alt"></i> Call Me
             </a>
+            
             <button onclick="showView('telegram-view')" class="btn btn-telegram">
                 <i class="fab fa-telegram-plane"></i> Telegram
             </button>
+            
             <button onclick="showView('instagram-view')" class="btn btn-instagram">
                 <i class="fab fa-instagram"></i> Instagram
             </button>
         </div>
 
-        <!-- 🌟 صفحه تلگرام (استفاده از عکس شما) -->
+        <!-- 🌟 صفحه تلگرام -->
         <div id="telegram-view" class="view">
+            <!-- استفاده از عکس اصلی شما -->
             <img src="profile.jpg" alt="Amir Ali" class="profile-img">
             <h1>Telegram</h1>
             <p class="id-text">@Amir_ali194</p>
@@ -138,21 +130,23 @@
             <a href="https://t.me/Amir_ali194" class="btn btn-telegram">
                 <i class="fab fa-telegram-plane"></i> ورود به پیام‌رسان
             </a>
+            
             <button onclick="showView('main-view')" class="btn btn-cancel">
                 <i class="fas fa-arrow-right"></i> بازگشت
             </button>
         </div>
 
-        <!-- 🌟 صفحه اینستاگرام (استفاده خودکار از عکس اینستاگرام) -->
+        <!-- 🌟 صفحه اینستاگرام -->
         <div id="instagram-view" class="view">
-            <!-- این لینک به صورت خودکار عکس پیج اینستاگرام شما را پیدا میکند. اگر اینترنت قطع بود، عکس profile.jpg را نشان میدهد -->
-            <img src="instagram.jpg" alt="Instagram Profile" class="profile-img">
+            <!-- استفاده از عکس اختصاصی اینستاگرام -->
+            <img src="instagram.jpg" alt="Instagram" class="profile-img">
             <h1>Instagram</h1>
             <p class="id-text">@amir_zam01</p>
             
             <a href="https://instagram.com/amir_zam01" class="btn btn-instagram">
                 <i class="fab fa-instagram"></i> ورود به پیج
             </a>
+            
             <button onclick="showView('main-view')" class="btn btn-cancel">
                 <i class="fas fa-arrow-right"></i> بازگشت
             </button>
@@ -160,14 +154,14 @@
 
     </div>
 
+    <!-- کد جاوا اسکریپت برای جابجایی نرم بین صفحات -->
     <script>
-        // این تابع صفحات را بدون رفرش عوض میکند
         function showView(viewId) {
-            // همه صفحات را مخفی کن
+            // مخفی کردن تمام صفحات
             document.querySelectorAll('.view').forEach(view => {
                 view.classList.remove('active');
             });
-            // صفحه مورد نظر را نشان بده
+            // نمایش صفحه انتخاب شده
             document.getElementById(viewId).classList.add('active');
         }
     </script>
