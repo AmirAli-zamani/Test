@@ -16,7 +16,6 @@
         }
 
         body {
-            /* پس زمینه گرادیان تیره و شیک */
             background: linear-gradient(135deg, #1e1e2f 0%, #111119 100%);
             min-height: 100vh;
             display: flex;
@@ -27,7 +26,6 @@
         }
 
         .card {
-            /* افکت شیشه‌ای (Glassmorphism) */
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -52,13 +50,14 @@
             font-size: 40px;
             font-weight: 600;
             box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
+            /* اینجا میتوانید عکس خود را در گیت هاب آپلود کنید و آدرسش را در src قرار دهید */
+            /* background-image: url('profile.jpg'); background-size: cover; */
         }
 
         h1 {
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 5px;
-            letter-spacing: 1px;
         }
 
         p {
@@ -86,78 +85,164 @@
             font-weight: 600;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
         }
 
-        .btn i {
-            font-size: 20px;
+        .btn i { font-size: 20px; }
+
+        .btn-phone { background: rgba(255, 255, 255, 0.1); }
+        .btn-phone:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-3px); }
+
+        .btn-telegram { background: #229ED9; }
+        .btn-telegram:hover { background: #1e8bc3; transform: translateY(-3px); }
+
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-instagram:hover { transform: translateY(-3px); }
+
+        .footer { margin-top: 30px; font-size: 12px; color: #71717a; }
+
+        /* --- استایل‌های مربوط به پنجره مودال (Popup) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
 
-        /* استایل دکمه‌ها با رنگ‌های اختصاصی */
-        .btn-phone {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .btn-phone:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .btn-telegram {
-            background: #229ED9;
-        }
-        .btn-telegram:hover {
-            background: #1e8bc3;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(34, 158, 217, 0.3);
-        }
-
-        .btn-instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-        .btn-instagram:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+        .modal-content {
+            background: #1e1e2f;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            width: 90%;
+            max-width: 340px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #71717a;
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
         }
+
+        .modal-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #a855f7;
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .modal-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .modal-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-confirm { background: #10b981; color: white; }
+        .btn-confirm:hover { background: #059669; }
+        
+        .btn-cancel { background: rgba(255, 255, 255, 0.1); color: #ddd; }
+        .btn-cancel:hover { background: rgba(255, 255, 255, 0.2); }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <!-- حرف اول اسم شما در آواتار -->
         <div class="avatar">A</div>
-        
         <h1>Amir Ali</h1>
         <p>Digital Business Card</p>
 
         <div class="links">
-            <!-- دکمه تماس -->
             <a href="tel:09905754550" class="btn btn-phone">
-                <i class="fas fa-phone-alt"></i>
-                Call Me
+                <i class="fas fa-phone-alt"></i> Call Me
             </a>
 
-            <!-- دکمه تلگرام -->
-            <a href="https://t.me/Amir_ali194" target="_blank" class="btn btn-telegram">
-                <i class="fab fa-telegram-plane"></i>
-                Telegram
+            <!-- دکمه‌های تلگرام و اینستاگرام با یک ویژگی data-link برای جاوا اسکریپت -->
+            <a href="#" class="btn btn-telegram" data-url="https://t.me/Amir_ali194" data-app="Telegram">
+                <i class="fab fa-telegram-plane"></i> Telegram
             </a>
 
-            <!-- دکمه اینستاگرام -->
-            <a href="https://instagram.com/amir_zam01" target="_blank" class="btn btn-instagram">
-                <i class="fab fa-instagram"></i>
-                Instagram
+            <a href="#" class="btn btn-instagram" data-url="https://instagram.com/amir_zam01" data-app="Instagram">
+                <i class="fab fa-instagram"></i> Instagram
             </a>
         </div>
 
-        <div class="footer">
-            Scan my NFC tag to connect
+        <div class="footer">Scan my NFC tag to connect</div>
+    </div>
+
+    <!-- پنجره مودال (مخفی است تا وقتی کلیک شود) -->
+    <div class="modal-overlay" id="socialModal">
+        <div class="modal-content">
+            <!-- اینجا عکس خود را قرار دهید. فعلا یک عکس پیش فرض گذاشتم -->
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Profile Picture" class="modal-img">
+            
+            <h2 class="modal-text" id="modalTitle">ورود به تلگرام</h2>
+            
+            <div class="modal-btn-group">
+                <a href="#" id="confirmBtn" class="btn btn-confirm">ادامه و ورود</a>
+                <button id="cancelBtn" class="btn btn-cancel">انصراف</button>
+            </div>
         </div>
     </div>
 
+    <script>
+        const overlay = document.getElementById('socialModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        
+        // پیدا کردن دکمه‌های تلگرام و اینستاگرام
+        const socialButtons = document.querySelectorAll('.btn-telegram, .btn-instagram');
+
+        socialButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // جلوگیری از باز شدن لینک در لحظه کلیک
+                
+                const url = this.getAttribute('data-url');
+                const appName = this.getAttribute('data-app');
+                
+                // تنظیم متن و لینک دکمه تایید
+                modalTitle.innerText = 'ورود به ' + appName;
+                confirmBtn.href = url;
+                
+                // نمایش مودال
+                overlay.classList.add('active');
+            });
+        });
+
+        // بستن مودال با دکمه انصراف
+        cancelBtn.addEventListener('click', function() {
+            overlay.classList.remove('active');
+        });
+
+        // بستن مودال با کلیک بیرون از کادر
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
